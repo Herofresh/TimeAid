@@ -1,0 +1,42 @@
+Ziele:
+- erlernen Java
+- erlernen github
+- funktionierender Kalender (inkl. synchronisation)
+- funktionierende automatische terminverteilung
+- einhaltung der Milestones
+
+Nichtziele:
+- responsive design
+- coole effekte
+- online speicher
+- kontoverwaltung
+- Verwendung einer Datenbank
+
+
+wenn zeit ist:
+- Lerntyp-Fragebogen für Optimierung von automatischer Termineinteilung
+- Pomodoro Uhr implementieren
+- To-Do Checklisten (für Packlisten, Einkaufslisten, Erinnerungslisten, etc.)
+- diverse visuelle Statistiken
+
+milestones:
+statisches Layout & Design fertig
+Google API Einbindung
+CIS API Einbindung
+Grundfunktionalität
+
+aufteilung:
+vieraugenprinzip
+- KALENDERAPP 1. Andre 2. Bjorna
+- CIS API 1. Johannes 2. Bjorna
+- GOOGLE API 1. Bjorna 2. Miel
+- STATISCHES LAYOUT/DESIGN 1. Andre 2. Johannes
+- PROJEKTMANAGEMENT 1. Miel 2. Andre
+
+verwendete Technologien/wieso:
+Verwendete Programme:
+- Github
+braucht man sowieso 
+- IntelliJ IDEA
+- Android Studio
+weil standards, genug dokumentation,
