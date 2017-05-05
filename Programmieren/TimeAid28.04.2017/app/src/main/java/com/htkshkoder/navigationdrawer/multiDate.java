@@ -5,4 +5,10 @@ package com.htkshkoder.navigationdrawer;
  */
 
 public class multiDate extends eintrag {
+
+    /*
+        SingleDate[]
+        showEintrag()
+        createMultiDateEintrag()
+     */
 }

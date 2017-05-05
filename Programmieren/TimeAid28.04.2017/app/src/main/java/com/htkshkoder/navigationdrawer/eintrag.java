@@ -5,4 +5,10 @@ package com.htkshkoder.navigationdrawer;
  */
 
 public class eintrag {
+    /*
+        Variablen:
+            datum,name,description,priority,kategorie
+        Methoden:
+            showEintrag()
+     */
 }

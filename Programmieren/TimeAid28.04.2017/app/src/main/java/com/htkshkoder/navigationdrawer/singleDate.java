@@ -5,4 +5,10 @@ package com.htkshkoder.navigationdrawer;
  */
 
 public class singleDate extends eintrag {
+
+    /*
+        showEintrag()
+        createEintrag()
+     */
+
 }
