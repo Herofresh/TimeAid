@@ -9,6 +9,6 @@ import android.support.v7.app.AppCompatActivity;
  * Created by bjorn on 05.05.2017.
  */
 
-public class Eintrag extends AppCompatActivity {
-
+public class eintrag extends AppCompatActivity {
+    //hier kommen alle Variablen zur eintrag-Klasse
 }
