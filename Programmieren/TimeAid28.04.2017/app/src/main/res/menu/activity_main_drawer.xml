@@ -3,9 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_drawer_calendar"
+            android:title="Calendar" />
+        <item
             android:id="@+id/nav_first_layout"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="First Layout" />
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Settings" />
         <item
             android:id="@+id/nav_second_layout"
             android:icon="@drawable/ic_menu_gallery"
@@ -14,10 +18,6 @@
             android:id="@+id/nav_third_layout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Third Layout" />
-        <item
-            android:id="@+id/nav_calendar"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Calendar" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
