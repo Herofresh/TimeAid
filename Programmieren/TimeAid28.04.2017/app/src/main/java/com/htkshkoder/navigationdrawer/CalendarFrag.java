@@ -16,7 +16,7 @@ import android.widget.Toast;
  * Created by FeJo on 28.04.2017.
  */
 
-public class CalendarFragment extends Fragment {
+public class CalendarFrag extends Fragment {
 
     public CalendarView myView;
 
