@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+<CalendarView xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CalendarFragment">
+    android:id="@+id/simpleCalendarView"
+    android:layout_width="wrap_content"
 
-    <CalendarView
-        android:id="@+id/simpleCalendarView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxDate="01/01/2020"
-        android:minDate="01/01/2017"
-        android:selectedWeekBackgroundColor="#0000CD"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
-    </CalendarView>
 
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:maxDate="01/01/2020"
+    android:minDate="01/01/2017"
+    android:orientation="vertical"
+    android:selectedWeekBackgroundColor="#0000CD"
+    tools:context=".CalendarFragment"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
+
+
+</CalendarView>
