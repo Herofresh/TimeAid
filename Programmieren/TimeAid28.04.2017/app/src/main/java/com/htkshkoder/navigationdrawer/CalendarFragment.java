@@ -24,15 +24,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public CalendarView onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-
         myView = (CalendarView) inflater.inflate(R.layout.calendarlo, container, false);
-
-
-
-        //myView = (CalendarView)inflater.inflate(R.layout.calendarlo, container, false);
-
-        //myView =  (CalendarView)getView().findViewById(R.id.simpleCalendarView);
-
 
         myView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -43,8 +35,5 @@ public class CalendarFragment extends Fragment {
             }
         });
         return myView;
-        //return super.onCreateView(inflater, container, savedInstanceState);
-
-
     }
 }

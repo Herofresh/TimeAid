@@ -3,10 +3,8 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/simpleCalendarView"
-    android:layout_width="wrap_content"
-
-
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:maxDate="01/01/2020"
     android:minDate="01/01/2017"
     android:orientation="vertical"
