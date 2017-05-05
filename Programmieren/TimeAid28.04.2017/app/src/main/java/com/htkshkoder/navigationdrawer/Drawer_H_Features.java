@@ -11,14 +11,14 @@ import android.view.ViewGroup;
  * Created by FeJo on 28.04.2017.
  */
 
-public class SettingsFrag extends Fragment {
+public class Drawer_H_Features extends Fragment {
 
     View myView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.settings_lo, container, false);
+        myView = inflater.inflate(R.layout.drawer_h_features_lo, container, false);
         return myView;
         //return super.onCreateView(inflater, container, savedInstanceState);
     }

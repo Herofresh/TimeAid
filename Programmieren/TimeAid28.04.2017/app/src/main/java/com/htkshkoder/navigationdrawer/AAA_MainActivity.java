@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                setContentView(R.layout.eintrag_layout);
+                setContentView(R.layout.calendar_a_eintrag_lo);
             }
         });
 
@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity
         android.app.FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_first_layout) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new SettingsFrag()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_D_Settings()).commit();
         } else if (id == R.id.nav_second_layout) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new SecondFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_H_Features()).commit();
         } else if (id == R.id.nav_third_layout) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new ThirdFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
         } else if (id == R.id.nav_calendar) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarFrag()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_A_Calendar()).commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

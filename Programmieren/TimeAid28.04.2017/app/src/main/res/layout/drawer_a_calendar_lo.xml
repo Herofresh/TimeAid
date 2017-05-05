@@ -9,7 +9,7 @@
     android:minDate="01/01/2017"
     android:orientation="vertical"
     android:selectedWeekBackgroundColor="#0000CD"
-    tools:context=".CalendarFrag"
+    tools:context=".Drawer_A_Calendar"
     tools:layout_editor_absoluteX="8dp"
     tools:layout_editor_absoluteY="8dp">
 
