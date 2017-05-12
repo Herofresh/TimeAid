@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package kalenderlogik;
+package calendarlogic;
 import java.util.Date;
 import java.util.LinkedList;
 
