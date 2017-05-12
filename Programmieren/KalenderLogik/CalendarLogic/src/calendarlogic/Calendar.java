@@ -7,7 +7,10 @@ package calendarlogic;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-/**
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.*;
+import com.google.api.client.util.ExponentialBackOff;
+ /**
  *
  * @author Miel
  */
