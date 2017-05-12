@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import android.widget.TextView;
  * Created by bjorn on 05.05.2017.
  */
 
-public class Calendar_A_Eintrag extends Activity{
+public class Calendar_A_Eintrag extends AppCompatActivity{
     /*
         Variablen:
             datum,name,description,priority,kategorie

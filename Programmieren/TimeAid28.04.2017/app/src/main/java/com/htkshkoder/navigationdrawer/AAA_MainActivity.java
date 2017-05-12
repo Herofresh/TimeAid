@@ -32,8 +32,9 @@ public class AAA_MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 //setContentView(R.layout.calendar_a_eintrag_lo);
-                Intent in  = new Intent(AAA_MainActivity.this,Calendar_A_Eintrag.class);
-                startActivity(in);
+
+                startActivity(new Intent(view.getContext(),Calendar_A_Eintrag.class));
+
             }
         });
 
