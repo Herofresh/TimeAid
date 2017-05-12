@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add a new Event"
-        android:layout_weight="0.04" />
+        android:layout_weight="0.19" />
 
     <TextView
         android:id="@+id/tVaddName"
@@ -24,20 +24,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Enter Event Name here" />
+        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Event" />
-
-    <Button
-        android:id="@+id/btnGoBack"
+        android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.04"
-        android:text="Go Back" />
+        android:text="submit" />
 
 </LinearLayout>
