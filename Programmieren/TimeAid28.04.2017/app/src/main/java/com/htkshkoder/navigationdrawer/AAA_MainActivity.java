@@ -13,11 +13,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.model.EventDateTime;
+
+
 public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        EventDateTime ev = new EventDateTime();
+        ev.setDateTime(new DateTime("2017-05-13T14:44:20Z"));
+
+        System.out.println("\n\n\n\n\n\n\n\n\n KRARKARKAKRKARKAKKAKRKAKRKARKARKAKRKAR"+Calendar_Logic.dateParser(ev).toString());
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
