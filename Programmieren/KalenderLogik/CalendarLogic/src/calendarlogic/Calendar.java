@@ -3,71 +3,74 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kalenderlogik;
+package calendarlogic;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-/**
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.*;
+import com.google.api.client.util.ExponentialBackOff;
+ /**
  *
  * @author Miel
  */
-public class Kalender {
-    HashMap<String,Termin> hashTermine;
-      private static final Logger fLogger =
-    Logger.getLogger(Kalender.class.getPackage().getName())
-  ;
+public class Calendar {
+    HashMap<String,Event> hashEvents;
+    private static final Logger fLogger =
+            Logger.getLogger(Calendar.class.getPackage().getName())
+            ;
 
-    public void addTermin (Termin t){
-        hashTermine.put(t.ID, t);
+    public void addEvent (Event t){
+        hashEvents.put(t.ID, t);
         //google geben
     }
-    public void editTermin (Termin t){
-        hashTermine.replace(t.ID, t);
+    public void editEvent (Event t){
+        hashEvents.replace(t.ID, t);
         //google geben
     }
-    public void deleteTermin (Termin t){
-        hashTermine.remove(t.ID);
+    public void deleteEvent (Event t){
+        hashEvents.remove(t.ID);
     }
-    public void saveTermine(String path)
+    public void saveEvents(String path)
     {
-         //serialize the List
-    try (
-      OutputStream file = new FileOutputStream(path);
-      OutputStream buffer = new BufferedOutputStream(file);
-      ObjectOutput output = new ObjectOutputStream(buffer);
-    ){
-      output.writeObject(hashTermine);
-    }  
-    catch(IOException ex){
-      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
-    }
+        //serialize the List
+        try (
+                OutputStream file = new FileOutputStream(path);
+                OutputStream buffer = new BufferedOutputStream(file);
+                ObjectOutput output = new ObjectOutputStream(buffer);
+        ){
+            output.writeObject(hashEvents);
+        }
+        catch(IOException ex){
+            fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
+        }
 
     }
-    
-    public void loadTermine(String path)
+
+    public void loadEvents(String path)
     {
-       try(
-      InputStream file = new FileInputStream("path");
-      InputStream buffer = new BufferedInputStream(file);
-      ObjectInput input = new ObjectInputStream (buffer);
-    ){
-      //deserialize the List
-      hashTermine = (HashMap<String,Termin>)input.readObject();
-    }
-    catch(ClassNotFoundException ex){
-      fLogger.log(Level.SEVERE, "Cannot perform input. Class not found.", ex);
-    }
-    catch(IOException ex){
-      fLogger.log(Level.SEVERE, "Cannot perform input.", ex);
-    }
+        try(
+                InputStream file = new FileInputStream("path");
+                InputStream buffer = new BufferedInputStream(file);
+                ObjectInput input = new ObjectInputStream (buffer);
+        ){
+            //deserialize the List
+            hashEvents = (HashMap<String,Event>)input.readObject();
+        }
+        catch(ClassNotFoundException ex){
+            fLogger.log(Level.SEVERE, "Cannot perform input. Class not found.", ex);
+        }
+        catch(IOException ex){
+            fLogger.log(Level.SEVERE, "Cannot perform input.", ex);
+        }
     }
 
     public Vector<Pair<Date,Date>> dynamicDate (Date endDate, Date startTime, Date endTime){
         Vector<TimeWindow> suggestedDates = new Vector<TimeWindow>();
-        Vector<Pair<Date,Termin>> results = new Vector<Pair<Date,Termin>>();
+        Vector<Pair<Date,Event>> results = new Vector<Pair<Date,Event>>();
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
-        for(Map.Entry<String, Termin> entry : hashTermine.entrySet()){
+        for(Map.Entry<String, Event> entry : hashEvents.entrySet()){
             if(now.compareTo(entry.getValue().getStart())>0)
             {
                 if(endDate.compareTo(entry.getValue().getStart())<0)
@@ -96,22 +99,22 @@ public class Kalender {
                 }
             }
         }
-        for(Pair<Date,Termin> t : results)
+        for(Pair<Date,Event> t : results)
+        {
+            for(TimeWindow tw : suggestedDates)
+            {
+                TimeWindow[] split = tw.splitTime(tw, t.getRight().getTime());
+                if(split[0].isValid())
+                {
+                    suggestedDates.remove(tw);
+                    for(TimeWindow newTw : split)
                     {
-                        for(TimeWindow tw : suggestedDates)
-                        {
-                            TimeWindow[] split = tw.splitTime(tw, t.getRight().getTime());
-                            if(split[0].isValid())
-                            {
-                                suggestedDates.remove(tw);
-                                for(TimeWindow newTw : split)
-                                {
-                                    suggestedDates.add(newTw);
-                                }
-                                break;
-                            }
-                        }
+                        suggestedDates.add(newTw);
                     }
+                    break;
+                }
+            }
+        }
     }
 }
 
@@ -124,7 +127,7 @@ public class TimeWindow
     public TimeWindow() {
         this.valid = false;
     }
-    
+
     public TimeWindow(Date start, Date end) {
         this.start = start;
         this.end = end;
@@ -145,12 +148,12 @@ public class TimeWindow
     public Date getEnd() {
         return end;
     }
-    
+
     public long getTimeBetween() {
         long difference = end.getTime() - start.getTime();
         return difference;
     }
-    
+
     public TimeWindow[] splitTime(TimeWindow toSplit, TimeWindow toComp) {
         
         /*Check Start and End from both TimeWindow
@@ -162,7 +165,7 @@ public class TimeWindow
         End2 = toSplit.End
         */
         TimeWindow[] retValue;
-        
+
         if (toSplit.getStart() == toComp.getStart() && toSplit.getEnd() == toComp.getEnd()){
             TimeWindow invalidTw = new TimeWindow();
             retValue = new TimeWindow[1];
