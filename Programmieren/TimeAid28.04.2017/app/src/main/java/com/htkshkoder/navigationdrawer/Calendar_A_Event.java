@@ -64,8 +64,12 @@ public class Calendar_A_Event {
     Event entry = new Event();
     Calendar_TimeWindow tW;
 
-    public Calendar_A_Event()
+    public Calendar_A_Event(String id, EventDateTime startDate, EventDateTime endDate)
     {
+        entry.setId(id);
+        entry.setStart(startDate);
+        entry.setEnd(endDate);
 
+        tW = new Calendar_TimeWindow(Calendar_Logic.dateParser(startDate), Calendar_Logic.dateParser(endDate));
     }
 }

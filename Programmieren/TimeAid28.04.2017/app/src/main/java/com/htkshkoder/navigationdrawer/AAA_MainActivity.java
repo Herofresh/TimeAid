@@ -14,7 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.EventDateTime;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class AAA_MainActivity extends AppCompatActivity
@@ -23,10 +31,37 @@ public class AAA_MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        EventDateTime ev = new EventDateTime();
-        ev.setDateTime(new DateTime("2017-05-13T14:44:20Z"));
+        List<Calendar_A_Event> test = new LinkedList<Calendar_A_Event>();
 
-        System.out.println("\n\n\n\n\n\n\n\n\n KRARKARKAKRKARKAKKAKRKAKRKARKARKAKRKAR"+Calendar_Logic.dateParser(ev).toString());
+        for (int i = 0; i < 10; i++)
+        {
+
+
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.GERMAN);
+
+            int day = 18+i;
+
+            String sDate = "2017-05-" + day + "T0"+i+":12";
+            String eDate = "2017-05-" + day + "T1"+i+":12";
+
+
+
+            DateTime s = new DateTime(sDate);
+            DateTime e = new DateTime(eDate);
+
+            EventDateTime edtS = new EventDateTime();
+            EventDateTime edtE = new EventDateTime();
+
+            edtE.setDateTime(e);
+            edtS.setDateTime(s);
+
+            test.add(new Calendar_A_Event(""+i, edtS, edtE));
+
+
+
+        }
+
+
 
 
         super.onCreate(savedInstanceState);
@@ -97,7 +132,9 @@ public class AAA_MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_D_Settings()).commit();
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_H_Features()).commit();
-        } else if (id == R.id.nav_third_layout) {
+        }/* else if (id == R.id.nav_ausgabe) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
+        }*/ else if (id == R.id.nav_third_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
         } else if (id == R.id.nav_calendar) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_A_Calendar()).commit();
