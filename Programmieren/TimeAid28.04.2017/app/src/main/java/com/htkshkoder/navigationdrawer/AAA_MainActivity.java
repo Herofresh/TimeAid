@@ -1,5 +1,6 @@
 package com.htkshkoder.navigationdrawer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -75,7 +76,9 @@ public class AAA_MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                setContentView(R.layout.calendar_a_eintrag_lo);
+
+                Intent i = new Intent(getApplicationContext(), secondScreen.class);
+                startActivity(i);
             }
         });
 
