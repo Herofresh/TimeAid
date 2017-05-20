@@ -32,35 +32,7 @@ public class AAA_MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        List<Calendar_A_Event> test = new LinkedList<Calendar_A_Event>();
 
-        for (int i = 0; i < 10; i++)
-        {
-
-
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.GERMAN);
-
-            int day = 18+i;
-
-            String sDate = "2017-05-" + day + "T0"+i+":12:00";
-            String eDate = "2017-05-" + day + "T1"+i+":12:00";
-
-
-
-            DateTime s = new DateTime(sDate);
-            DateTime e = new DateTime(eDate);
-
-            EventDateTime edtS = new EventDateTime();
-            EventDateTime edtE = new EventDateTime();
-
-            edtE.setDateTime(e);
-            edtS.setDateTime(s);
-
-            test.add(new Calendar_A_Event(""+i, edtS, edtE));
-
-
-
-        }
 
 
 

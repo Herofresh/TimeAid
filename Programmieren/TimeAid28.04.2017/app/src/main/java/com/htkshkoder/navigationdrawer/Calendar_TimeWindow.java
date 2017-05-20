@@ -24,6 +24,13 @@ public class Calendar_TimeWindow {
         return start;
     }
 
+    @Override
+    public String toString()
+    {
+        String output = start.toString() + " - " + end.toString();
+        return output;
+    }
+
     public void setValid(boolean valid) {
         this.valid = valid;
     }

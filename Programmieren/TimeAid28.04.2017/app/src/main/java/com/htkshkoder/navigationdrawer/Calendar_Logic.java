@@ -31,6 +31,10 @@ public class Calendar_Logic {
         return d;
     }
 
+    public Calendar_Logic()
+    {
+        hashCalendar_A_Events = new HashMap<String,Calendar_A_Event>();
+    }
 
     HashMap<String,Calendar_A_Event> hashCalendar_A_Events;
     private static final Logger fLogger =

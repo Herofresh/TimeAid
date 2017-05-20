@@ -72,4 +72,10 @@ public class Calendar_A_Event {
 
         tW = new Calendar_TimeWindow(Calendar_Logic.dateParser(startDate), Calendar_Logic.dateParser(endDate));
     }
+
+    @Override
+    public String toString()
+    {
+        return tW.toString();
+    }
 }
