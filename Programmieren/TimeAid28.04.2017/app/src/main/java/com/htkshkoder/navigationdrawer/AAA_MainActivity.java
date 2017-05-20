@@ -42,8 +42,8 @@ public class AAA_MainActivity extends AppCompatActivity
 
             int day = 18+i;
 
-            String sDate = "2017-05-" + day + "T0"+i+":12";
-            String eDate = "2017-05-" + day + "T1"+i+":12";
+            String sDate = "2017-05-" + day + "T0"+i+":12:00";
+            String eDate = "2017-05-" + day + "T1"+i+":12:00";
 
 
 
@@ -135,9 +135,9 @@ public class AAA_MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_D_Settings()).commit();
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_H_Features()).commit();
-        }/* else if (id == R.id.nav_ausgabe) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
-        }*/ else if (id == R.id.nav_third_layout) {
+        } else if (id == R.id.nav_test) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TestWindow()).commit();
+        } else if (id == R.id.nav_third_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
         } else if (id == R.id.nav_calendar) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_A_Calendar()).commit();
