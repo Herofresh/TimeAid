@@ -95,6 +95,11 @@ public class Termin {
         this.groupID = groupID;
         time = new TimeWindow(start,end);
     }
+
+    public void setTime(Date start, Date end)
+    {
+        time = new TimeWindow(start, end);
+    }
     
     
 }
