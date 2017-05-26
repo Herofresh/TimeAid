@@ -118,14 +118,15 @@ public class Calendar {
         return suggestedDates;
     }
 
-    public Vector<Termin> linearDistribution (Vector<TimeWindow> suggestedDates, Vector<Termin> newEvent, long eventLength){
+    public Vector<TimeWindow> linearDistribution (Vector<TimeWindow> suggestedDates, Vector<Termin> toDistributeDates, long toDistributeLength){
         Vector<int> indexToDel;
-        Vector<Date> availableDates;
+        Vector<Date> availableDays;
+        Vector<TimeWindow> distributedDates;
         int i = 0;
         for (TimeWindow value:suggestedDates) {
-            if(value.getTimeBetween()<eventLength);
+            if(value.getTimeBetween()<toDistributeLength);
             {
-                indexToDel.add(i)
+                indexToDel.add(i);
             }
             else
             {
@@ -133,9 +134,9 @@ public class Calendar {
                 day.setYear = value.getStart().getYear();
                 day.setMonth = value.getStart().getMonth();
                 day.setDate = value.getStart().getDate();
-                if(availableDates.indexOf(day) == -1)
+                if(availableDays.indexOf(day) == -1)
                 {
-                    availableDates.add(day);
+                    availableDays.add(day);
                 }
             }
             i++;
@@ -143,29 +144,41 @@ public class Calendar {
         for (int delIndex: indexToDel) {
             suggestedDates.remove(delIndex);
         }
+        int availableSize = availableDays.size();
+        int suggestedSize = suggestedDates.size();
+        double factor = (double) availableSize / toDistributeDates.size();
 
-        double factor = availableDates.size() / newEvent.size();
-        if (factor == 1){
+
+        if (factor < 1){
             // füge termin bei jedem tag hinzu
-            int mielCountYouStupidBitch = 0;
-                for (Date currentDay:availableDates) {
-                    for (TimeWindow possibleTimeWindow:suggestedDates) {
-                        if(currentDay.getYear() == possibleTimeWindow.getStart().getYear()
-                        && currentDay.getMonth() == possibleTimeWindow.getStart().getMonth()
-                        && currentDay.getDate() == possibleTimeWindow.getStart().getDate()){
+            int k = 0;
+            for (Date currentDay:availableDays) {
+                for (double j = 0; j < availableSize; j++)
+                {
+                    //for (TimeWindow possibleTimeWindow:suggestedDates) {
 
-                        }
+                    if        (currentDay.getYear() == possibleTimeWindow.getStart().getYear()
+                            && currentDay.getMonth() == possibleTimeWindow.getStart().getMonth()
+                            && currentDay.getDate() == possibleTimeWindow.getStart().getDate()){
+
+                        suggestedDates.at(j);
+
                     }
-                    mielCountYouStupidBitch++;
                 }
-                temp.setTime();
-        }
-        else if (factor < 1){
+                linearDistribution(suggestedDates, toDistributeDates, toDistributeLength);
+            }
+            temp.setTime();
             // füge termin bei jedem tag hinzu und gehe mit übrehang
             // nochmal faktor ausrechnen
             // ergebnis bestimmt anzahl der wh.
             // rekursiv
         }
+        else if (factor > 1){
+
+        }else if (factor <= 0) {
+            return;
+        }
+        else
         else {
             //gehe in algorithmus
         }
