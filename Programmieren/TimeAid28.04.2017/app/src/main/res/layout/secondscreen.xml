@@ -1,19 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
-        android:id="@+id/textviewNo3"
+        android:id="@+id/tvCreateEvent"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Create a new Event"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvEnterNameofEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hello secon screen" />
+        android:text="Event Name"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:typeface="normal" />
+
+    <EditText
+        android:id="@+id/etEnterNameOfEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description" />
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/tvStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Starting Date" />
+
+    <DatePicker
+        android:id="@+id/dpStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="94dp"
+        android:layout_margin="10dp"
+        android:alwaysDrawnWithCache="true"
+        android:calendarViewShown="?attr/isLightTheme"
+        android:datePickerMode="spinner"
+        android:layout_weight="0.08" />
+
+    <TextView
+        android:id="@+id/tvEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ending Date" />
+
+    <DatePicker
+        android:id="@+id/dpEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="98dp"
+        android:layout_margin="10dp"
+        android:calendarViewShown="?attr/isLightTheme"
+        android:clickable="false"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/btnCreateEvent"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Create"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 </LinearLayout>

@@ -46,10 +46,8 @@ public class AAA_MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
                 Intent i = new Intent(getApplicationContext(), secondScreen.class);
+                i.putExtra("date","18.05.2017");
                 startActivity(i);
             }
         });
