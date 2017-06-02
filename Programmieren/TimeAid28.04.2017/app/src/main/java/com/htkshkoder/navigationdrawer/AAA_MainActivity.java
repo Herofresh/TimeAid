@@ -32,9 +32,10 @@ public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView imgLogo;
+    API googleApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        googleApi = new API();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
