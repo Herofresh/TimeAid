@@ -129,7 +129,7 @@ public class API extends Activity
         } else if (! isDeviceOnline()) {
             //mOutputText.setText("No network connection available.");
         } else {
-            new MakeRequestTask(mCredential).execute((int)param[0]);
+            new MakeRequestTask(mCredential).execute(param);
         }
     }
 
@@ -332,10 +332,11 @@ public class API extends Activity
         /**
          * Background task to call Google Calendar API.
          * @param params first Object always a int that is the Choice: 1=get Events, 2=create Event, 3=update Event, 4=delete Event
-         *               second Object case 1: DateTime, from when on do i need the Events
+         *               second Object case 1: DateTime, from when on do i need the Events; third Object case 1: int, amount of Events
          *               second Object case 2: Event, Event i want to create
          *               second Object case 3: Event, Event i want to update
          *               second Object case 4: Event, Event i want to delete
+         *
          */
         @Override
         protected List<Event> doInBackground(Object... params) {
@@ -344,7 +345,7 @@ public class API extends Activity
             try {
                 switch (choice) {
                     case 1:
-                        return getDataFromApi((DateTime)params[1]);
+                        return getDataFromApi((DateTime)params[1], (int)params[2]);
                     case 2:
                         event = (Event)params[1];
                         createEvent(event);
@@ -372,11 +373,10 @@ public class API extends Activity
          * @return List of Strings describing returned events.
          * @throws IOException
          */
-        private List<Event> getDataFromApi(DateTime since) throws IOException {
+        private List<Event> getDataFromApi(DateTime since, int amount) throws IOException {
             // List the next 10 events from the primary calendar.
-            List<String> eventStrings = new ArrayList<String>();
             Events events = mService.events().list("primary")
-                    .setMaxResults(100)
+                    .setMaxResults(amount)
                     .setTimeMin(since)
                     .setOrderBy("startTime")
                     .setSingleEvents(true)
@@ -388,12 +388,12 @@ public class API extends Activity
 
         private void createEvent(Event event) throws IOException {
             String calendarId = "primary";
-            event = mService.events().insert(calendarId, event).execute();
+            mService.events().insert(calendarId, event).execute();
         }
 
         private void updateEvent(Event event) throws IOException
         {
-            event = mService.events().update("primary", event.getId(), event).execute();
+            mService.events().update("primary", event.getId(), event).execute();
         }
 
         private void deleteEvent(Event event) throws IOException
