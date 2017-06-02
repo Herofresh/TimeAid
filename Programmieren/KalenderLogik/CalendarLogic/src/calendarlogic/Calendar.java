@@ -15,11 +15,12 @@ import com.google.api.client.util.ExponentialBackOff;
  * @author Miel
  */
 public class Calendar {
-    HashMap<String,Event> hashEvents;
-     Vector<TimeWindow> suggestedTWs;
-     Vector<TimeWindow> distributedTWs;
-     Vector<Termin> toDistributeDates;
-     Vector<Date> availableDays;
+    HashMap<String,Event> hashEvents; //Hashtable for saving events (with ID)
+     Vector<TimeWindow> suggestedTWs; //all TWs which are within the chosen time range
+     Vector<TimeWindow> distributedTWs; //all distributed TWs after algorithm
+     int toDistributeDates; //number of events to distribute (like 20)
+     long toDistributeLength; //length of events to distribute (like 2 hours)
+     Vector<Date> availableDays; //all days in chosen time range including free TWs that are >= the toDistributeLength
 
      public void setToDistributeDates(Vector<Termin> toDistributeDates) {
          this.toDistributeDates = toDistributeDates;
@@ -30,13 +31,11 @@ public class Calendar {
          distributedTWs.clear();
      }
 
-     public void setSuggestedTWs(Vector<TimeWindow> suggestedTWs, int toDistributeLength) {
+     public void setSuggestedTWs(Vector<TimeWindow> suggestedTWs, long toDistributeLength) {
          this.suggestedTWs = suggestedTWs;
          distributedTWs.clear();
          filterSuggestedTWs(suggestedTWs, toDistributeLength);
      }
-
-
 
 
 
@@ -68,7 +67,6 @@ public class Calendar {
         catch(IOException ex){
             fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
         }
-
     }
 
     public void loadEvents(String path)
@@ -89,8 +87,9 @@ public class Calendar {
         }
     }
 
+
+     //saves dates to hashtable and calculates & returns suggestet TWs
     public Vector<TimeWindow> dynamicDate (Date endDate, Date startTime, Date endTime){
-        // Vector<TimeWindow> suggestedTWs = new Vector<TimeWindow>(); // zur Klassenvariable gemacht
         Vector<Pair<Date,Event>> results = new Vector<Pair<Date,Event>>();
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
@@ -142,6 +141,7 @@ public class Calendar {
         return suggestedTWs;
     }
 
+    //compares suggestedTWs to length of events and deletes the ones that are shorter from hashtable via ID
      public Vector<TimeWindow> filterSuggestedTWs (long toDistributeLength){
          Vector<int> indexToDel;
 
@@ -169,6 +169,7 @@ public class Calendar {
          }
      }
 
+     //splits time span into 4 blocks and returns them as a date array
      public Vector<Date>[] splitDay () {
          Collections.sort(availableDays);
          Vector<Date>[] blockDays = new Vector<Date>[4];
@@ -191,11 +192,14 @@ public class Calendar {
          return blockDays;
      }
 
+
      public Vector<Termin> splitSuggestedTWs (Vector<Date> daysOfBlock)
      {
          // return: alle suggestedTWs, die in die Tage -> Parameter passen
      }
 
+     //distributes (depending on bool) the number of given dates in a time span either progressively or degressively
+     //first splits the time span into blocks (via splitDay) and also uses the linear distribution to implement the algorithm for each block
      public Vector<TimeWindow> progDegDistribution (Vector<TimeWindow> distributedTWs, bool degressive) {
          double transfer = 0;
          int currBlock;
@@ -218,12 +222,10 @@ public class Calendar {
 
 
          }
-
-
-
          for (int i = 0; )
      }
 
+    //distributes all wanted dates equally
     public Vector<TimeWindow> linearDistribution (Vector<TimeWindow> distributedTWs){
 
         int availableSize = availableDays.size();
@@ -298,12 +300,9 @@ public class Calendar {
         return distributedTWs;
 
     }
-
-
-
-
 }
 
+//This class creates instances of TWs, which means that it takes all Events in given time spans and then calculates the rest-time
 public class TimeWindow
 {
     Date start;
