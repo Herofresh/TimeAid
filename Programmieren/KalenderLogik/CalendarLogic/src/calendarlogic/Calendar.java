@@ -18,7 +18,12 @@ public class Calendar {
     HashMap<String,Event> hashEvents;
      Vector<TimeWindow> suggestedTWs;
      Vector<TimeWindow> distributedTWs;
+     Vector<Termin> toDistributeDates;
      Vector<Date> availableDays;
+
+     public void setToDistributeDates(Vector<Termin> toDistributeDates) {
+         this.toDistributeDates = toDistributeDates;
+     }
 
      public void setSuggestedTWs(Vector<TimeWindow> suggestedTWs) {
          this.suggestedTWs = suggestedTWs;
@@ -30,6 +35,8 @@ public class Calendar {
          distributedTWs.clear();
          filterSuggestedTWs(suggestedTWs, toDistributeLength);
      }
+
+
 
 
 
@@ -162,8 +169,8 @@ public class Calendar {
          }
      }
 
-     public Vector<Vector<Date>> splitDay ()
-     {
+     public Vector<Date>[] splitDay () {
+         Collections.sort(availableDays);
          Vector<Date>[] blockDays = new Vector<Date>[4];
          double blockSize = (double) availableDays.size()/4;
          double transfer = 0;
@@ -178,36 +185,46 @@ public class Calendar {
 
              for (int j = 0; j < currBlock; j++)
              {
-                 blockDays[i].add(availableDays.at(avDaysIndex++))
+                 blockDays[i].add(availableDays.at(avDaysIndex++));
              }
          }
          return blockDays;
      }
 
-     public Vector<TimeWindow> progDegDistribution (Vector<TimeWindow> distributedDates, Vector<Termin> toDistributeDates, bool degressive)
+     public Vector<Termin> splitSuggestedTWs (Vector<Date> daysOfBlock)
      {
+         // return: alle suggestedTWs, die in die Tage -> Parameter passen
+     }
+
+     public Vector<TimeWindow> progDegDistribution (Vector<TimeWindow> distributedTWs, bool degressive) {
          double transfer = 0;
          int currBlock;
          int[] percent = {5,15,30,50};
          if (degressive) ArrayUtils.reverse(percent);
          double onePercent = (double) toDistributeDates.size()/100;
+         Vector<Termin>[]
+         Vector<Date>[] doneSplit = splitDay();
+         Vector<Termin>[] doneSuggested =
 
          for (int i = 0; i < 4; i++)
          {
+             availableDays = doneSplit[i];
+
              transfer += (double) percent[i] * onePercent;
              currBlock = (int) transfer;
              transfer -= currBlock;
 
+            linearDistribution(distributedTWs);
+
 
          }
 
-         Vector<Termin> toDistributeDates
 
 
          for (int i = 0; )
      }
 
-    public Vector<TimeWindow> linearDistribution (Vector<TimeWindow> distributedDates, Vector<Termin> toDistributeDates){
+    public Vector<TimeWindow> linearDistribution (Vector<TimeWindow> distributedTWs){
 
         int availableSize = availableDays.size();
         int suggestedSize = suggestedTWs.size();
@@ -225,13 +242,13 @@ public class Calendar {
                             && currentDay.getMonth() == possibleTW.getStart().getMonth()
                             && currentDay.getDate() == possibleTW.getStart().getDate()){
 
-                        distributedDates.add(possibleTW);
+                        distributedTWs.add(possibleTW);
                         break;
                     }
                 }
                     suggestedTWs.remove(suggestedTWs.indexOf(usedTW));
                 // rekursiver Aufruf
-                 if (k++ >= availableSize) linearDistribution(distributedDates, toDistributeDates);
+                 if (k++ >= availableSize) linearDistribution(distributedTWs);
             }
             // temp.setTime(); Keine Ahnung was die Variable machen soll :(
         }
@@ -254,12 +271,12 @@ public class Calendar {
                             && currentDay.getMonth() == possibleTW.getStart().getMonth()
                             && currentDay.getDate() == possibleTW.getStart().getDate()){
 
-                        distributedDates.add(possibleTW);
+                        distributedTWs.add(possibleTW);
                         break;
                     }
                 }
                 suggestedTWs.remove(suggestedTWs.indexOf(usedTW));
-                if (f += factor > availableSize) return distributedDates;
+                if (f += factor > availableSize) return distributedTWs;
             }
         }else if (factor == 1){ // Gleich viele Termine wie Tage -> Nach diesem Aufruf ENDE
             int k = 0;
@@ -270,7 +287,7 @@ public class Calendar {
                             && currentDay.getMonth() == possibleTW.getStart().getMonth()
                             && currentDay.getDate() == possibleTW.getStart().getDate()){
 
-                        distributedDates.add(possibleTW);
+                        distributedTWs.add(possibleTW);
                         break;
                     }
                 }
@@ -278,7 +295,7 @@ public class Calendar {
                 k++;
             }
         }
-        return distributedDates;
+        return distributedTWs;
 
     }
 
