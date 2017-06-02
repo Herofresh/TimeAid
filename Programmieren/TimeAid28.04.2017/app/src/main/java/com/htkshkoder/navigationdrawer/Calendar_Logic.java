@@ -31,7 +31,11 @@ public class Calendar_Logic {
         return d;
     }
 
-/*
+    public Calendar_Logic()
+    {
+        hashCalendar_A_Events = new HashMap<String,Calendar_A_Event>();
+    }
+
     HashMap<String,Calendar_A_Event> hashCalendar_A_Events;
     private static final Logger fLogger =
             Logger.getLogger(Calendar.class.getPackage().getName())
@@ -42,13 +46,14 @@ public class Calendar_Logic {
         //google geben
     }
     public void editCalendar_A_Event (Calendar_A_Event t){
-        hashCalendar_A_Events.replace(t.entry.getId(), t);
+        deleteCalendar_A_Event(t);
+        addCalendar_A_Event(t);
         //google geben
     }
     public void deleteCalendar_A_Event (Calendar_A_Event t){
         hashCalendar_A_Events.remove(t.entry.getId());
     }
-    public void saveCalendar_A_Events(String path)
+    /*public void saveCalendar_A_Events(String path)
     {
         //serialize the List
         try (
@@ -82,27 +87,29 @@ public class Calendar_Logic {
             fLogger.log(Level.SEVERE, "Cannot perform input.", ex);
         }
 
-    }
+    }*/
 
-    /*public Vector<Pair<Date,Date>> dynamicDate (Date endDate, Date startTime, Date endTime){
+    public Vector<Calendar_TimeWindow> dynamicDate (EventDateTime dueTo, Date startTime, Date endTime){
+        Date dueToDate = dateParser(dueTo);
         Vector<Calendar_TimeWindow> suggestedDates = new Vector<Calendar_TimeWindow>();
         Vector<Pair<Date,Calendar_A_Event>> results = new Vector<Pair<Date,Calendar_A_Event>>();
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
         for(Map.Entry<String, Calendar_A_Event> entry : hashCalendar_A_Events.entrySet()){
-            if(now.compareTo(entry.getValue().getStart())>0)
+            Date tempDate = dateParser(entry.getValue().entry.getStart());
+            if(now.compareTo(tempDate)>0)
             {
-                if(endDate.compareTo(entry.getValue().getStart())<0)
+                if(dueToDate.compareTo(tempDate)<0)
                 {
-                    results.add(new Pair(entry.getValue().start, entry.getValue()));
+                    results.add(new Pair(entry.getValue().entry.getStart(), entry.getValue()));
                 }
             }
         }
-        for(int y = now.getYear(); y <= endDate.getYear(); y++)
+        for(int y = now.getYear(); y <= dueToDate.getYear(); y++)
         {
-            for(int m = now.getMonth(); m <= endDate.getMonth(); m++)
+            for(int m = now.getMonth(); m <= dueToDate.getMonth(); m++)
             {
-                for(int d = now.getDate(); d <= endDate.getDate(); d++)
+                for(int d = now.getDate(); d <= dueToDate.getDate(); d++)
                 {
                     Date startDay = new Date();
                     startDay.setYear(y);
@@ -122,7 +129,7 @@ public class Calendar_Logic {
         {
             for(Calendar_TimeWindow tw : suggestedDates)
             {
-                Calendar_TimeWindow[] split = tw.splitTime(tw, t.getRight().getTime());
+                Calendar_TimeWindow[] split = tw.splitTime(tw, t.getRight().tW);
                 if(split[0].isValid())
                 {
                     suggestedDates.remove(tw);
@@ -134,5 +141,6 @@ public class Calendar_Logic {
                 }
             }
         }
-    }*/
+        return suggestedDates;
+    }
 }

@@ -1,5 +1,7 @@
 package com.htkshkoder.navigationdrawer;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,35 +14,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.EventDateTime;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ImageView imgLogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        EventDateTime ev = new EventDateTime();
-        ev.setDateTime(new DateTime("2017-05-13T14:44:20Z"));
-
-        System.out.println("\n\n\n\n\n\n\n\n\n KRARKARKAKRKARKAKKAKRKAKRKARKARKAKRKAR"+Calendar_Logic.dateParser(ev).toString());
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        imgLogo = (ImageView)findViewById(R.id.imgLogo);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                setContentView(R.layout.calendar_a_eintrag_lo);
+                Intent i = new Intent(getApplicationContext(), secondScreen.class);
+                //exchange Data between views key->value
+                i.putExtra("date","18.05.2017");
+                startActivity(i);
             }
         });
 
@@ -52,6 +60,7 @@ public class AAA_MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -97,6 +106,8 @@ public class AAA_MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_D_Settings()).commit();
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Drawer_H_Features()).commit();
+        } else if (id == R.id.nav_test) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TestWindow()).commit();
         } else if (id == R.id.nav_third_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ZZZ_Fragment_Template()).commit();
         } else if (id == R.id.nav_calendar) {
