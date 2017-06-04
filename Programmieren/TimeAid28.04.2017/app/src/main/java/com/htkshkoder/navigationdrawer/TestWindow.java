@@ -112,7 +112,7 @@ public class TestWindow extends Fragment {
             printTW += value.toString();
             printTW += '\n';
         }
-        RL.setText(printTW);
+        RL.setText("HALLOAOAOOA");
 
         return myView;
     }
