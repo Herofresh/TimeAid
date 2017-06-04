@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,6 +26,8 @@ public class secondScreen extends AppCompatActivity {
     String eventName, startStringDate,endStringDate, description;
     Date startDate, endDate;
     SimpleDateFormat dateFormatter;
+    TimePicker tpStartTime, tpEndTime;
+    Time startTime, endTime;
 
     @Override
     public  void onCreate(Bundle savedInstanceState){
@@ -31,11 +35,13 @@ public class secondScreen extends AppCompatActivity {
         setContentView(R.layout.secondscreen);
 
         btnClose = (Button)findViewById(R.id.btnCreateEvent);
-        tvEnterNameOfEvent =(TextView)findViewById(R.id.tvEnterNameofEvent);
+        tvEnterNameOfEvent =(TextView)findViewById(R.id.tvEnterNameOfEvent);
         etEnterNameOfEvent = (EditText)findViewById(R.id.etEnterNameOfEvent);
         etDescription = (EditText)findViewById(R.id.etDescription);
         dpStartDate = (DatePicker)findViewById(R.id.dpStartDate);
         dpEndDate = (DatePicker)findViewById(R.id.dpEndDate);
+        tpStartTime = (TimePicker)findViewById(R.id.tpStartDate);
+        tpEndTime = (TimePicker)findViewById(R.id.tpEndDate);
 
         Intent i = getIntent();
 
@@ -50,6 +56,8 @@ public class secondScreen extends AppCompatActivity {
                 startDate = new Date(year,month,day);
                 dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 startStringDate = dateFormatter.format(startDate);
+
+
                 tvEnterNameOfEvent.setText(startStringDate);
 
                 day = dpEndDate.getDayOfMonth();

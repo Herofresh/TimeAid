@@ -16,16 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.Calendar;
-import com.google.api.services.calendar.model.EventDateTime;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 
 
 public class AAA_MainActivity extends AppCompatActivity
