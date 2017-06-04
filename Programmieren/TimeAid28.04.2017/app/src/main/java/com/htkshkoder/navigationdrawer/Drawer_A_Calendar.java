@@ -28,7 +28,6 @@ public class Drawer_A_Calendar extends Fragment {
         myView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
                 month +=1;
                 Toast.makeText(getActivity(),dayOfMonth + "/" + month +"/" + year, Toast.LENGTH_LONG).show();
             }

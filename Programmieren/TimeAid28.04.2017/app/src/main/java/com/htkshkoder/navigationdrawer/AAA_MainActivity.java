@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Calendar;
@@ -46,9 +47,6 @@ public class AAA_MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),secondScreen.class);
                 startActivityForResult(i, 1);
-                //exchange Data between views key->value
-                i.putExtra("date","18.05.2017");
-                startActivity(i);
             }
         });
 
@@ -78,7 +76,7 @@ public class AAA_MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 String newEvent = data.getStringExtra("newEventValue");
                 Event e = stringToEvent(newEvent);
-                Calendar_A_Event newE = new Calendar_A_Event(e);
+               Calendar_A_Event newE = new Calendar_A_Event(e);
                 cl.addCalendar_A_Event(newE);
             }
         }
@@ -86,19 +84,36 @@ public class AAA_MainActivity extends AppCompatActivity
 
     private Event stringToEvent(String input){
         String[] parts = input.split(";");
+        Toast t = Toast.makeText(getApplicationContext(),input, Toast.LENGTH_LONG);
+        t.show();
         Event e =  new Event();
-        e.setId(parts[0]);
-        e.setSummary(parts[1]);
-        e.setDescription(parts[2]);
-        EventDateTime eventStart = new EventDateTime();
-        DateTime start = new DateTime(parts[3]);
-        eventStart.setDate(start);
-        eventStart.setDateTime(start);
-        e.setStart(eventStart);
-        start = new DateTime(parts[4]);
-        eventStart.setDate(start);
-        eventStart.setDateTime(start);
-        e.setEnd(eventStart);
+        for(int i = 0; i<parts.length;i++)
+        {
+            switch (i) {
+                case 0:
+                    if (parts[i] != null)
+                        e.setId(parts[0]);
+                    break;
+                case 1:
+                    if (parts[i] != null)
+                        e.setSummary(parts[1]);
+                    break;
+                case 2:
+                    if (parts[i] != null)
+                        e.setDescription(parts[2]);
+                    break;
+            }
+        }
+
+//        EventDateTime eventStart = new EventDateTime();
+//        DateTime start = new DateTime(parts[3]);
+//        eventStart.setDate(start);
+//        eventStart.setDateTime(start);
+//        e.setStart(eventStart);
+//        start = new DateTime(parts[4]);
+//        eventStart.setDate(start);
+//        eventStart.setDateTime(start);
+//        e.setEnd(eventStart);
         return e;
     }
 
