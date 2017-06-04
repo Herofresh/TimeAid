@@ -38,6 +38,7 @@ public class secondScreen extends AppCompatActivity {
         dpEndDate = (DatePicker)findViewById(R.id.dpEndDate);
 
         Intent i = getIntent();
+
         btnClose.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 eventName = etEnterNameOfEvent.getText().toString();
@@ -59,6 +60,8 @@ public class secondScreen extends AppCompatActivity {
                 endStringDate = dateFormatter.format(endDate);
                 tvEnterNameOfEvent.append(" ");
                 tvEnterNameOfEvent.append(endStringDate);
+
+
             }
         });
     }
