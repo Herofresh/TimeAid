@@ -142,4 +142,17 @@
         android:layout_alignParentTop="true"
         android:text="Create new Event"/>
 
+    <Button
+        android:id="@+id/button4"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prefered Period"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_below="@+id/etDescription"
+        android:layout_alignRight="@+id/etDescription"
+        android:layout_alignEnd="@+id/etDescription" />
+
 </RelativeLayout>
