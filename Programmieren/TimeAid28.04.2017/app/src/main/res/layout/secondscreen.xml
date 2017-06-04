@@ -143,7 +143,7 @@
         android:text="Create new Event"/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnUsrPref"
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:layout_width="wrap_content"

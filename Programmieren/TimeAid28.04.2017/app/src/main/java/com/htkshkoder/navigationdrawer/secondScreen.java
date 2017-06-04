@@ -24,7 +24,7 @@ import java.util.Date;
  */
 
 public class secondScreen extends AppCompatActivity {
-    Button btnClose;
+    Button btnClose, btnusrPref;
     TextView tvEnterNameOfEvent;
     EditText etEnterNameOfEvent, etDescription;
     DatePicker dpStartDate, dpEndDate;
@@ -40,6 +40,7 @@ public class secondScreen extends AppCompatActivity {
         setContentView(R.layout.secondscreen);
 
         btnClose = (Button) findViewById(R.id.btnCreateEvent);
+        btnusrPref = (Button) findViewById(R.id.btnUsrPref);
         tvEnterNameOfEvent = (TextView) findViewById(R.id.tvEnterNameOfEvent);
         etEnterNameOfEvent = (EditText) findViewById(R.id.etEnterNameOfEvent);
         etDescription = (EditText) findViewById(R.id.etDescription);
@@ -83,7 +84,14 @@ public class secondScreen extends AppCompatActivity {
                 finish();
             }
         });
+    btnusrPref.setOnClickListener(new View.OnClickListener(){
+        public void onClick(View v){
+            Intent i = new Intent(getApplicationContext(), Serialization_UserPreferences.class);
+            startActivity(i);
+        }
+    });
     }
+
 
     private String eventToString(Event e) {
         String result = "";
