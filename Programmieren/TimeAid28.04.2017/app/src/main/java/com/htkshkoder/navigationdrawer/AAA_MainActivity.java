@@ -16,27 +16,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+<<<<<<< HEAD
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+=======
+>>>>>>> origin/master
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 
 
 public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView imgLogo;
-    API googleApi;
+   //API googleApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        googleApi = new API();
+        //googleApi = new API();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
