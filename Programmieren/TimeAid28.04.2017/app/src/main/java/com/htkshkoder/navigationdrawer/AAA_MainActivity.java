@@ -32,7 +32,7 @@ public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView imgLogo;
-    API googleApi;
+   //API googleApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //googleApi = new API();
