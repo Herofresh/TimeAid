@@ -16,18 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-<<<<<<< HEAD
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
-=======
->>>>>>> origin/master
+
 
 
 
 public class AAA_MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Calendar_Logic cl = new Calendar_Logic();
 
     ImageView imgLogo;
    //API googleApi;
@@ -60,7 +60,14 @@ public class AAA_MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        try
+        {
+            cl = cl.loadCalendar_A_Events();
+        }
+        catch (Exception e)
+        {
 
+        }
     }
 
     @Override
@@ -71,7 +78,8 @@ public class AAA_MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 String newEvent = data.getStringExtra("newEventValue");
                 Event e = stringToEvent(newEvent);
-                
+                Calendar_A_Event newE = new Calendar_A_Event(e);
+                cl.addCalendar_A_Event(newE);
             }
         }
     }

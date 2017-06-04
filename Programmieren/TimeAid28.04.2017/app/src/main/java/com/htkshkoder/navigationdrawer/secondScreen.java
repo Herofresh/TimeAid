@@ -11,14 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-<<<<<<< HEAD
 import java.util.UUID;
 
 import com.google.api.services.calendar.model.Event;
 
-=======
 import java.sql.Time;
->>>>>>> origin/master
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -69,7 +66,6 @@ public class secondScreen extends AppCompatActivity {
                 startDate = new Date(year,month,day);
                 dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 startStringDate = dateFormatter.format(startDate);
-                int hour =  tpStartTime.getHour();
 
                 tvEnterNameOfEvent.setText(startStringDate);
 

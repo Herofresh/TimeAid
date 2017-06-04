@@ -73,6 +73,11 @@ public class Calendar_A_Event {
         tW = new Calendar_TimeWindow(Calendar_Logic.dateParser(startDate), Calendar_Logic.dateParser(endDate));
     }
 
+    public Calendar_A_Event(Event e)
+    {
+        tW = new Calendar_TimeWindow(Calendar_Logic.dateParser(e.getStart()), Calendar_Logic.dateParser(e.getEnd()));
+    }
+
     @Override
     public String toString()
     {
