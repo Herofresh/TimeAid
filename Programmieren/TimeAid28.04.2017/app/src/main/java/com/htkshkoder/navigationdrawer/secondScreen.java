@@ -1,5 +1,6 @@
 package com.htkshkoder.navigationdrawer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.UUID;
+
+import com.google.api.services.calendar.model.Event;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,9 +46,14 @@ public class secondScreen extends AppCompatActivity {
 
         btnClose.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                eventName = etEnterNameOfEvent.getText().toString();
-                description = etDescription.getText().toString();
-                // save date from user
+                Event newEvent = new Event();
+                newEvent.setId(UUID.randomUUID().toString());
+                newEvent.setSummary(etEnterNameOfEvent.getText().toString());
+                newEvent.setDescription(etDescription.getText().toString());
+
+
+
+                //newEvent.setStart();
                 int day = dpStartDate.getDayOfMonth();
                 int month = dpStartDate.getMonth();
                 int year = dpStartDate.getYear()-1900;
@@ -61,8 +71,23 @@ public class secondScreen extends AppCompatActivity {
                 tvEnterNameOfEvent.append(" ");
                 tvEnterNameOfEvent.append(endStringDate);
 
+                Intent resultIntent = new Intent();
 
+                resultIntent.putExtra("newEventValue", eventToString(newEvent));
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
             }
         });
+    }
+
+    private String eventToString(Event e)
+    {
+        String result = "";
+        result += e.getId() + ";";
+        result += e.getSummary() + ";";
+        result += e.getDescription() + ";";
+        result += e.getStart().toString() + ";";
+        result += e.getEnd().toString() + ";";
+        return  result;
     }
 }
