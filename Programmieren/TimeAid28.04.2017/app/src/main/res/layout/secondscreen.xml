@@ -31,8 +31,8 @@
 
         android:layout_marginLeft="142dp"
         android:layout_marginStart="142dp"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         android:timePickerMode="spinner" />
 
     <TextView
@@ -76,8 +76,8 @@
         android:layout_alignBottom="@+id/dpStartDate"
         android:layout_alignLeft="@+id/tpStartDate"
         android:layout_alignStart="@+id/tpStartDate"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         android:timePickerMode="spinner" />
 
     <TextView
