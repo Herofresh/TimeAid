@@ -1,6 +1,5 @@
 package com.htkshkoder.navigationdrawer;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +9,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import java.util.UUID;
-
-import com.google.api.services.calendar.model.Event;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -52,20 +47,16 @@ public class secondScreen extends AppCompatActivity {
 
         btnClose.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Event newEvent = new Event();
-                newEvent.setId(UUID.randomUUID().toString());
-                newEvent.setSummary(etEnterNameOfEvent.getText().toString());
-                newEvent.setDescription(etDescription.getText().toString());
-
-
-
-                //newEvent.setStart();
+                eventName = etEnterNameOfEvent.getText().toString();
+                description = etDescription.getText().toString();
+                // save date from user
                 int day = dpStartDate.getDayOfMonth();
                 int month = dpStartDate.getMonth();
                 int year = dpStartDate.getYear()-1900;
                 startDate = new Date(year,month,day);
                 dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 startStringDate = dateFormatter.format(startDate);
+                int hour =  tpStartTime.getHour();
 
                 tvEnterNameOfEvent.setText(startStringDate);
 
@@ -78,23 +69,8 @@ public class secondScreen extends AppCompatActivity {
                 tvEnterNameOfEvent.append(" ");
                 tvEnterNameOfEvent.append(endStringDate);
 
-                Intent resultIntent = new Intent();
 
-                resultIntent.putExtra("newEventValue", eventToString(newEvent));
-                setResult(Activity.RESULT_OK, resultIntent);
-                finish();
             }
         });
-    }
-
-    private String eventToString(Event e)
-    {
-        String result = "";
-        result += e.getId() + ";";
-        result += e.getSummary() + ";";
-        result += e.getDescription() + ";";
-        result += e.getStart().toString() + ";";
-        result += e.getEnd().toString() + ";";
-        return  result;
     }
 }
